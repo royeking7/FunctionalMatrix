@@ -11,31 +11,31 @@ void printMatrix( vector <vector <char> > );
 //-----------------------------------------------------------------------------
 int main()
 {
-    //Variables for user input and grid representation
-    vector <vector <char > > grid;
-    int rows;
-    int cols;
-    char filler;
+  //Variables for user input and grid representation
+  vector <vector <char > > grid;
+  int rows;
+  int cols;
+  char filler;
 
-    //Retrieve user input...
-    cout<<"Enter a character to fill the grid:"<<endl;
-    cin>>filler;
-    cout<<"Enter rows and columns of "<<filler<<"'s:"<<endl;
-    cin>>rows>>cols;
-    
-    //Print error and quit if invalid matrix size...
-    if( rows < 1 || cols < 1 )
-    {
-        cout<<"Grids must have at least one row and at least one column.\n";
-    }
-    else
-    {
-        //Call functions to...
-        grid = initializeMatrix(rows,cols,filler); //...make the initial grid
-        printMatrix(grid); //...print the initialized grid
-    }
+  //Retrieve user input...
+  cout<<"Enter a character to fill the grid:"<<endl;
+  cin>>filler;
+  cout<<"Enter rows and columns of "<<filler<<"'s:"<<endl;
+  cin>>rows>>cols;
 
-	return 0;
+  //Print error and quit if invalid matrix size...
+  if( rows < 1 || cols < 1 )
+  {
+    cout<<"Grids must have at least one row and at least one column.\n";
+  }
+  else
+  {
+    //Call functions to...
+    grid = initializeMatrix(rows,cols,filler); //...make the initial grid
+    printMatrix(grid); //...print the initialized grid
+  }
+
+  return 0;
 }
 //-----------------------------------------------------------------------------
 //END OF MAIN PROGRAM
@@ -50,18 +50,38 @@ int main()
  * @param value - a character value to which each element will be assigned
  * @return provides a vector of vectors of characters with the specified number
  *         of rows and columns which each element assigned to value
-**/
+ **/
 vector <vector <char> > initializeMatrix(int rows, int columns, char value)
 {
+  vector <vector <char> > grid;
+  grid.resize(rows);
+  for(int row = 0; row < grid.size(); row++)
+  {
+    grid[row].resize(columns);
+    for(int col = 0; col <grid[row].size(); col++)
+    {
+      grid[row][col] = value;
+    } 
+  }
+  return grid;
 }
-
 /**
  * Given a matrix (vector of vectors of characters), print out each element,
  * with each row printed on a new line and each value separated by spaces
  * (including a space at the end of each line)
  * 
  * @param matrix - a vector of vectors of characters to be printed out
-**/
+ **/
 void printMatrix(vector <vector <char> > matrix)
 {
-}
+
+  //cout<<"SCOREBOARD=====\n";
+  for(int row = 0; row < matrix.size(); row++)
+  {
+    for(int col = 0; col < matrix[row].size(); col++)
+    {
+      cout<<matrix[row][col]<<" ";
+    }
+    cout<<endl;
+  }
+}  
